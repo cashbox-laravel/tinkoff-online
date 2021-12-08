@@ -41,7 +41,7 @@ Add your driver information to the `config/cashier.php` file:
 
 ```php
 use App\Models\Payment;
-use App\Payments\TinkoffOnline as TinkoffOnlineDetails;
+use App\Payments\Tinkoff as TinkoffOnlineDetails;
 use CashierProvider\Core\Constants\Driver;
 use CashierProvider\Tinkoff\Online\Driver as TinkoffOnlineDriver;
 
@@ -75,7 +75,7 @@ namespace App\Payments;
 
 use CashierProvider\Core\Resources\Model;
 
-class TinkoffOnline extends Model
+class Tinkoff extends Model
 {
     protected function paymentId(): string
     {
@@ -112,7 +112,7 @@ use App\Models\Payment;
 use CashierProvider\Core\Resources\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class TinkoffOnline extends Model
+class Tinkoff extends Model
 {
     protected $bank;
 
