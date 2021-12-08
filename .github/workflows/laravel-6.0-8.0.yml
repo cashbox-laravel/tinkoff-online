@@ -1,0 +1,49 @@
+name: "Laravel 6-8"
+on: [ push ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: true
+            matrix:
+                php: [ "7.3", "7.4", "8.0" ]
+                laravel: [ "6.0", "7.0", "8.0" ]
+
+        name: PHP ${{ matrix.php }}, Laravel ${{ matrix.laravel }}
+
+        services:
+            mysql:
+                image: mysql:5.7
+                env:
+                    MYSQL_ROOT_PASSWORD: root
+                    MYSQL_DATABASE: default
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v2
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: curl, mbstring, zip, pcntl, pdo, pdo_sqlite, iconv, bcmath
+                    coverage: none
+
+            -   name: Store environment variables
+                run: |
+                    echo "CASHIER_BANK_TECHNOLOGY_CLIENT_ID=${{ secrets.CASHIER_BANK_TECHNOLOGY_CLIENT_ID }}" >> .env
+                    echo "CASHIER_BANK_TECHNOLOGY_CLIENT_SECRET=${{ secrets.CASHIER_BANK_TECHNOLOGY_CLIENT_SECRET }}" >> .env
+
+            -   name: Install dependencies
+                run: composer require laravel/framework:^${{ matrix.laravel }} --prefer-stable --prefer-dist --no-progress --no-interaction
+
+            -   name: Execute tests
+                run: sudo vendor/bin/phpunit
+                env:
+                    MYSQL_HOST: 127.0.0.1
+                    PGSQL_HOST: 127.0.0.1
