@@ -1,25 +1,43 @@
 <?php
 
+/*
+ * This file is part of the "cashier-provider/tinkoff-online" project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Andrey Helldar <helldar@ai-rus.com>
+ *
+ * @copyright 2021 Andrey Helldar
+ *
+ * @license MIT
+ *
+ * @see https://github.com/cashier-provider/tinkoff-online
+ */
+
 namespace Tests;
 
 use CashierProvider\Core\Http\Response;
-use CashierProvider\Core\Services\Jobs;
+use CashierProvider\Tinkoff\Online\Driver as Online;
 use DragonCode\Contracts\Cashier\Driver as DriverContract;
 use DragonCode\Contracts\Cashier\Http\Response as ResponseContract;
 use DragonCode\Support\Facades\Http\Url;
-use Illuminate\Database\Eloquent\Model;
 use Tests\Fixtures\Models\RequestPayment;
-use CashierProvider\BankName\Technology\Driver as Technology;
 
 class DriverTest extends TestCase
 {
     protected $model = RequestPayment::class;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->runSeeders();
+    }
+
     public function testStart()
     {
-        $payment = $this->payment();
-
-        $response = $this->driver($payment)->start();
+        $response = $this->driver()->start();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertInstanceOf(ResponseContract::class, $response);
@@ -27,18 +45,16 @@ class DriverTest extends TestCase
         $this->assertIsString($response->getExternalId());
         $this->assertMatchesRegularExpression('/^(\d+)$/', $response->getExternalId());
 
-        $this->assertNull($response->getStatus());
+        $this->assertSame('NEW', $response->getStatus());
 
         $this->assertTrue(Url::is($response->getUrl()));
     }
 
     public function testCheck()
     {
-        $payment = $this->payment();
+        $this->driver()->start();
 
-        Jobs::make($payment)->start();
-
-        $response = $this->driver($payment)->check();
+        $response = $this->driver()->check();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertInstanceOf(ResponseContract::class, $response);
@@ -46,21 +62,18 @@ class DriverTest extends TestCase
         $this->assertIsString($response->getExternalId());
         $this->assertMatchesRegularExpression('/^(\d+)$/', $response->getExternalId());
 
-        $this->assertSame('FORM_SHOWED', $response->getStatus());
+        $this->assertSame('NEW', $response->getStatus());
 
         $this->assertSame([
-            'status' => 'FORM_SHOWED',
+            'status' => 'NEW',
         ], $response->toArray());
     }
 
     public function testRefund()
     {
-        $payment = $this->payment();
+        $this->driver()->start();
 
-        Jobs::make($payment)->start();
-        Jobs::make($payment)->check(true);
-
-        $response = $this->driver($payment)->refund();
+        $response = $this->driver()->refund();
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertInstanceOf(ResponseContract::class, $response);
@@ -71,10 +84,17 @@ class DriverTest extends TestCase
         $this->assertSame('CANCELED', $response->getStatus());
     }
 
-    protected function driver(Model $payment): DriverContract
+    protected function driver(): DriverContract
     {
+        $model = $this->payment();
+
         $config = $this->config();
 
-        return Technology::make($config, $payment);
+        return Online::make($config, $model);
+    }
+
+    protected function payment(): RequestPayment
+    {
+        return RequestPayment::firstOrFail();
     }
 }

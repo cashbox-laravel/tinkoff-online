@@ -1,18 +1,31 @@
 <?php
 
+/*
+ * This file is part of the "cashier-provider/tinkoff-online" project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Andrey Helldar <helldar@ai-rus.com>
+ *
+ * @copyright 2021 Andrey Helldar
+ *
+ * @license MIT
+ *
+ * @see https://github.com/cashier-provider/tinkoff-online
+ */
+
 declare(strict_types=1);
 
-namespace CashierProvider\BankName\Technology\Requests;
+namespace CashierProvider\Tinkoff\Online\Requests;
 
-use CashierProvider\Core\Facades\Config\Main;
 use CashierProvider\Core\Http\Request;
-use CashierProvider\BankName\Auth\Auth;
+use CashierProvider\Core\Support\URI;
+use CashierProvider\Tinkoff\Auth\Auth;
 
 abstract class BaseRequest extends Request
 {
-    protected $production_host = 'https://api.example.com';
-
-    protected $dev_host = 'https://dev.api.example.com';
+    protected $host = 'https://securepay.tinkoff.ru';
 
     protected $auth = Auth::class;
 
@@ -24,22 +37,8 @@ abstract class BaseRequest extends Request
         ];
     }
 
-    public function getHttpOptions(): array
+    protected function getUriBuilder(): URI
     {
-        if (Main::isProduction()) {
-            $cert = $this->getCertificateData();
-
-            return compact('cert');
-        }
-
-        return [];
-    }
-
-    protected function getCertificateData(): array
-    {
-        return [
-            $this->model->getCertificatePath(),
-            $this->model->getCertificatePassword(),
-        ];
+        return URI::make($this->host, null);
     }
 }

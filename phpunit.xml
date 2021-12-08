@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  ~ This file is part of the "cashier-provider/tinkoff-online" project.
+  ~
+  ~ For the full copyright and license information, please view the LICENSE
+  ~ file that was distributed with this source code.
+  ~
+  ~ @author Andrey Helldar <helldar@ai-rus.com>
+  ~
+  ~ @copyright 2021 Andrey Helldar
+  ~
+  ~ @license MIT
+  ~
+  ~ @see https://github.com/cashier-provider/tinkoff-online
+  -->
+
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
          backupGlobals="false"
@@ -16,7 +31,6 @@
 >
     <php>
         <env name="APP_KEY" value="base64:cW+4bNmhMQKcLH/+u+uByODdGBuXAgd1nzZpufnIwks="/>
-        <env name="APP_ENV" value="testing"/>
         <env name="DB_CONNECTION" value="mysql"/>
         <env name="DB_DATABASE" value="default"/>
         <env name="DB_USERNAME" value="root"/>

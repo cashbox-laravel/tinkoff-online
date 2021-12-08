@@ -1,6 +1,6 @@
-# BankName Technology Cashier Driver
+# Tinkoff Online Cashier Driver
 
-<img src="https://preview.dragon-code.pro/cashier-provider/driver-template.svg?brand=laravel" alt="Cashier Driver Template"/>
+![cashier provider tinkoff online](https://preview.dragon-code.pro/cashier-provider/tinkoff-online.svg?brand=laravel)
 
 [![Stable Version][badge_stable]][link_packagist]
 [![Unstable Version][badge_unstable]][link_packagist]
@@ -10,10 +10,10 @@
 
 ## Installation
 
-To get the latest version of `BankName Technology Cashier Driver`, simply require the project using [Composer](https://getcomposer.org):
+To get the latest version of `Tinkoff Online Cashier Driver`, simply require the project using [Composer](https://getcomposer.org):
 
 ```bash
-$ composer require cashier-provider/bankname-technology
+$ composer require cashier-provider/tinkoff-online
 ```
 
 Or manually update `require` block of `composer.json` and run `composer update`.
@@ -21,7 +21,7 @@ Or manually update `require` block of `composer.json` and run `composer update`.
 ```json
 {
     "require": {
-        "cashier-provider/bankname-technology": "^1.0"
+        "cashier-provider/tinkoff-online": "^1.0"
     }
 }
 ```
@@ -30,7 +30,7 @@ Or manually update `require` block of `composer.json` and run `composer update`.
 
 > **Note**:
 >
-> This project is the driver for [`Cashier Provider`](https://github.com/cashier-provider/core).
+> This project is the driver for [Cashier](https://github.com/cashier-provider/core).
 >
 > Terminal Key and Secret must be provided by the bank manager in response to the agreement concluded with the bank.
 
@@ -41,24 +41,24 @@ Add your driver information to the `config/cashier.php` file:
 
 ```php
 use App\Models\Payment;
-use App\Payments\BankName as BankNameDetails;
-use CashierProvider\BankName\Technology\Driver as BankNameDriver;
+use App\Payments\TinkoffOnline as TinkoffOnlineDetails;
 use CashierProvider\Core\Constants\Driver;
+use CashierProvider\Tinkoff\Online\Driver as TinkoffOnlineDriver;
 
 return [
     'payment' => [
         'map' => [
-            Payment::TYPE_BANK_NAME => 'driver_name'
+            Payment::TYPE_TINKOFF_ONLINE => 'tinkoff_online'
         ]
     ],
 
     'drivers' => [
-        'driver_name' => [
-            Driver::DRIVER  => BankNameDriver::class,
-            Driver::DETAILS => BankNameDetails::class,
+        'tinkoff_online' => [
+            Driver::DRIVER  => TinkoffOnlineDriver::class,
+            Driver::DETAILS => TinkoffOnlineDetails::class,
 
-            Driver::CLIENT_ID       => env('CASHIER_BANK_TECHNOLOGY_CLIENT_ID'),
-            Driver::CLIENT_SECRET   => env('CASHIER_BANK_TECHNOLOGY_CLIENT_SECRET'),
+            Driver::CLIENT_ID       => env('CASHIER_TINKOFF_CLIENT_ID'),
+            Driver::CLIENT_SECRET   => env('CASHIER_TINKOFF_CLIENT_SECRET'),
         ]
     ]
 ];
@@ -75,7 +75,7 @@ namespace App\Payments;
 
 use CashierProvider\Core\Resources\Model;
 
-class BankName extends Model
+class TinkoffOnline extends Model
 {
     protected function paymentId(): string
     {
@@ -112,7 +112,7 @@ use App\Models\Payment;
 use CashierProvider\Core\Resources\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-class BankName extends Model
+class TinkoffOnline extends Model
 {
     protected $bank;
 
@@ -153,7 +153,7 @@ class BankName extends Model
         }
 
         return $this->bank = $this->model->types()
-            ->where('type', Payment::TYPE_BANK_NAME)
+            ->where('type', Payment::TYPE_TINKOFF_ONLINE)
             ->firstOrFail()
             ->bank;
     }
@@ -162,14 +162,14 @@ class BankName extends Model
 
 ### Response
 
-All requests to the bank and processing of responses are carried out by the [`Cashier Provider`](https://github.com/cashier-provider/core) project.
+All requests to the bank and processing of responses are carried out by the [`Cashier`](https://github.com/cashier-provider/core) project.
 
 To get a link, contact him through the cast:
 
 ```php
 use App\Models\Payment;
 
-public function getTechnology(Payment $payment): string
+public function getOnlineUrl(Payment $payment): string
 {
     return $payment->cashier->details->getUrl();
 }
@@ -187,26 +187,26 @@ $payment->cashier->details->getStatus(): ?string
 
 $payment->cashier->details->getUrl(): ?string
 // If the request to get the link was successful, it will return the URL
-// For example, `https://dev.bank-uri.com/<hash>?<params>`
+// For example, `https://securepay.tinkoff.ru/new/<hash>`
 
 $payment->cashier->details->toArray(): array
 // Returns an array of status and URL.
 // For example,
 //
 // [
-//     'url' => 'https://dev.bank-uri.com/<hash>?<params>',
+//     'url' => 'https://securepay.tinkoff.ru/new/<hash>',
 //     'status' => 'NEW'
 // ]
 ```
 
-[badge_downloads]:      https://img.shields.io/packagist/dt/cashier-provider/core.svg?style=flat-square
+[badge_downloads]:      https://img.shields.io/packagist/dt/cashier-provider/tinkoff-online.svg?style=flat-square
 
-[badge_license]:        https://img.shields.io/packagist/l/cashier-provider/core.svg?style=flat-square
+[badge_license]:        https://img.shields.io/packagist/l/cashier-provider/tinkoff-online.svg?style=flat-square
 
-[badge_stable]:         https://img.shields.io/github/v/release/cashier-provider/core?label=stable&style=flat-square
+[badge_stable]:         https://img.shields.io/github/v/release/cashier-provider/tinkoff-online?label=stable&style=flat-square
 
 [badge_unstable]:       https://img.shields.io/badge/unstable-dev--main-orange?style=flat-square
 
 [link_license]:         LICENSE
 
-[link_packagist]:       https://packagist.org/packages/cashier-provider/core
+[link_packagist]:       https://packagist.org/packages/cashier-provider/tinkoff-online

@@ -1,11 +1,26 @@
 <?php
 
+/*
+ * This file is part of the "cashier-provider/tinkoff-online" project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Andrey Helldar <helldar@ai-rus.com>
+ *
+ * @copyright 2021 Andrey Helldar
+ *
+ * @license MIT
+ *
+ * @see https://github.com/cashier-provider/tinkoff-online
+ */
+
 namespace Tests\Responses;
 
 use CashierProvider\Core\Http\Response as BaseResponse;
+use CashierProvider\Tinkoff\Online\Responses\Init;
 use DragonCode\Contracts\Cashier\Http\Response;
 use Tests\TestCase;
-use CashierProvider\BankName\Technology\Responses\Created;
 
 class InitTest extends TestCase
 {
@@ -13,7 +28,7 @@ class InitTest extends TestCase
     {
         $response = $this->response();
 
-        $this->assertInstanceOf(Created::class, $response);
+        $this->assertInstanceOf(Init::class, $response);
         $this->assertInstanceOf(Response::class, $response);
     }
 
@@ -42,7 +57,7 @@ class InitTest extends TestCase
 
     protected function response(): Response
     {
-        return Created::make([
+        return Init::make([
             'TerminalKey' => $this->getTerminalKey(),
 
             'Amount'    => self::PAYMENT_SUM_FORMATTED,

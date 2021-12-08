@@ -21,11 +21,25 @@ namespace CashierProvider\Tinkoff\Online\Responses;
 
 use CashierProvider\Core\Http\Response;
 
-class Refund extends Response
+class Init extends Response
 {
+    public const KEY_URL = 'url';
+
     protected $map = [
         self::KEY_EXTERNAL_ID => 'PaymentId',
 
         self::KEY_STATUS => 'Status',
+
+        self::KEY_URL => 'PaymentURL',
     ];
+
+    public function getUrl(): ?string
+    {
+        return $this->value(self::KEY_URL);
+    }
+
+    public function isEmpty(): bool
+    {
+        return empty($this->getExternalId()) || empty($this->getUrl());
+    }
 }

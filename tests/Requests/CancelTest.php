@@ -1,12 +1,27 @@
 <?php
 
+/*
+ * This file is part of the "cashier-provider/tinkoff-online" project.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author Andrey Helldar <helldar@ai-rus.com>
+ *
+ * @copyright 2021 Andrey Helldar
+ *
+ * @license MIT
+ *
+ * @see https://github.com/cashier-provider/tinkoff-online
+ */
+
 namespace Tests\Requests;
 
 use CashierProvider\Core\Http\Request;
+use CashierProvider\Tinkoff\Online\Requests\Cancel;
 use DragonCode\Contracts\Cashier\Http\Request as RequestContract;
 use DragonCode\Contracts\Http\Builder;
 use Tests\TestCase;
-use CashierProvider\BankName\Technology\Requests\Cancel;
 
 class CancelTest extends TestCase
 {
@@ -25,7 +40,7 @@ class CancelTest extends TestCase
 
         $this->assertInstanceOf(Builder::class, $request->uri());
 
-        $this->assertSame('https://dev.api-bank-uri.com/api/cancel', $request->uri()->toUrl());
+        $this->assertSame('https://securepay.tinkoff.ru/v2/Cancel', $request->uri()->toUrl());
     }
 
     public function testHeaders()

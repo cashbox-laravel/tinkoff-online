@@ -15,20 +15,14 @@
  * @see https://github.com/cashier-provider/tinkoff-online
  */
 
-declare(strict_types=1);
+namespace Tests\database\seeders;
 
-namespace CashierProvider\Tinkoff\Online\Requests;
+use Illuminate\Database\Seeder;
 
-class Cancel extends BaseRequest
+class DatabaseSeeder extends Seeder
 {
-    protected $path = '/v2/Cancel';
-
-    public function getRawBody(): array
+    public function run()
     {
-        return [
-            'PaymentId' => $this->model->getExternalId(),
-
-            'Amount' => $this->model->getSum(),
-        ];
+        $this->call(PaymentSeeder::class);
     }
 }
