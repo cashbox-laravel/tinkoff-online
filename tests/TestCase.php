@@ -98,7 +98,7 @@ abstract class TestCase extends BaseTestCase
         $this->loadMigrationsFrom(__DIR__ . '/../vendor/cashier-provider/core/database/migrations/main');
     }
 
-    protected function model(Details $details = null): ReadyPayment
+    protected function model(?Details $details = null): ReadyPayment
     {
         $model = PaymentConfig::getModel();
 
@@ -120,7 +120,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * @param  \CashierProvider\Tinkoff\Online\Requests\BaseRequest|string  $request
+     * @param \CashierProvider\Tinkoff\Online\Requests\BaseRequest|string $request
      *
      * @return \DragonCode\Contracts\Cashier\Http\Request
      */
