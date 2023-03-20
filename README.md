@@ -1,6 +1,6 @@
 # Tinkoff Online Cashier Driver
 
-![cashier provider tinkoff online](https://preview.dragon-code.pro/cashier-provider/tinkoff-online.svg?brand=laravel)
+![cashier provider tinkoff online](https://preview.dragon-code.pro/cashier-provider/tinkoff-online.svg?brand=laravel&mode=dark)
 
 [![Stable Version][badge_stable]][link_packagist]
 [![Unstable Version][badge_unstable]][link_packagist]
