@@ -25,24 +25,20 @@ class Statuses extends BaseStatus
         'FORM_SHOWED',
         'NEW',
     ];
-
     public const REFUNDING = [
         'REFUNDING',
     ];
-
     public const REFUNDED = [
         'PARTIAL_REFUNDED',
         'REFUNDED',
         'REVERSED',
     ];
-
     public const FAILED = [
         'ATTEMPTS_EXPIRED',
         'CANCELED',
         'DEADLINE_EXPIRED',
         'REJECTED',
     ];
-
     public const SUCCESS = [
         'CONFIRMED',
     ];
