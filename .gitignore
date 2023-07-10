@@ -4,9 +4,11 @@ node_modules/
 vendor/
 
 .env
+http-client.private.env.json
 
 *.bak
 *.cache
 *.clover
 *.orig
+*.log
 *.lock
