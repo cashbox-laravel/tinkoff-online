@@ -17,7 +17,7 @@
 
 namespace Tests\Fixtures\Models;
 
-use CashierProvider\Core\Concerns\Casheable;
+use CashierProvider\Core\Billable;
 use DragonCode\LaravelSupport\Eloquent\UuidModel;
 
 /**
@@ -30,7 +30,7 @@ use DragonCode\LaravelSupport\Eloquent\UuidModel;
  */
 class RequestPayment extends UuidModel
 {
-    use Casheable;
+    use Billable;
 
     protected $table = 'payments';
 
