@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 namespace CashierProvider\Tinkoff\Online\Responses;
 
-use CashierProvider\Core\Http\Response;
+use CashierProvider\Core\Http\ResponseInfo;
 
-class Init extends Response
+class Init extends ResponseInfo
 {
     public const KEY_URL = 'url';
 

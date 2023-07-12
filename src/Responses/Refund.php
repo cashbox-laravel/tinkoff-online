@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 namespace CashierProvider\Tinkoff\Online\Responses;
 
-use CashierProvider\Core\Http\Response;
+use CashierProvider\Core\Http\ResponseInfo;
 
-class Refund extends Response
+class Refund extends ResponseInfo
 {
     protected $map = [
         self::KEY_EXTERNAL_ID => 'PaymentId',
