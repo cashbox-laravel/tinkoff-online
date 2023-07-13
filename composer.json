@@ -1,6 +1,6 @@
 {
     "name": "cashbox/tinkoff-online",
-    "description": "Driver for online payments via Tinkoff (see cashbox/core)",
+    "description": "The Tinkoff Online driver implements payments in the Tinkoff billing system.",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -70,6 +70,7 @@
         "branch-alias": {
             "dev-main": "4.x-dev"
         },
+        "title": "Tinkoff Online Driver",
         "thanks": [
             {
                 "name": "dragon-code/laravel-support",
