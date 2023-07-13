@@ -15,8 +15,8 @@
 
 namespace Tests\Responses;
 
-use CashierProvider\Core\Http\ResponseInfo as BaseResponse;
-use CashierProvider\Tinkoff\Online\Responses\State;
+use Cashbox\Core\Http\ResponseInfo as BaseResponse;
+use Cashbox\Tinkoff\Online\Responses\State;
 use DragonCode\Contracts\Cashier\Http\Response;
 use Tests\TestCase;
 

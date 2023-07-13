@@ -15,8 +15,8 @@
 
 namespace Tests\Requests;
 
-use CashierProvider\Core\Http\Request;
-use CashierProvider\Tinkoff\Online\Requests\GetState;
+use Cashbox\Core\Http\Request;
+use Cashbox\Tinkoff\Online\Requests\GetState;
 use DragonCode\Contracts\Cashier\Http\Request as RequestContract;
 use DragonCode\Contracts\Http\Builder;
 use Tests\TestCase;

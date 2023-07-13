@@ -15,12 +15,12 @@
 
 namespace Tests;
 
-use CashierProvider\Core\Config\Driver as DriverConfig;
-use CashierProvider\Core\Constants\Driver as DriverConstant;
-use CashierProvider\Core\Facades\Config\Payment as PaymentConfig;
-use CashierProvider\Core\Models\CashierDetail;
-use CashierProvider\Core\Providers\ServiceProvider;
-use CashierProvider\Tinkoff\Online\Driver;
+use Cashbox\Core\Config\Driver as DriverConfig;
+use Cashbox\Core\Constants\Driver as DriverConstant;
+use Cashbox\Core\Facades\Config\Payment as PaymentConfig;
+use Cashbox\Core\Models\CashierDetail;
+use Cashbox\Core\Providers\ServiceProvider;
+use Cashbox\Tinkoff\Online\Driver;
 use DragonCode\Contracts\Cashier\Http\Request;
 use DragonCode\Contracts\Cashier\Resources\Details;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
@@ -107,7 +107,7 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * @param  \CashierProvider\Tinkoff\Online\Requests\BaseRequest|string  $request
+     * @param  \Cashbox\Tinkoff\Online\Requests\BaseRequest|string  $request
      */
     protected function request(string $request): Request
     {

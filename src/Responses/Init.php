@@ -15,9 +15,9 @@
 
 declare(strict_types=1);
 
-namespace CashierProvider\Tinkoff\Online\Responses;
+namespace Cashbox\Tinkoff\Online\Responses;
 
-use CashierProvider\Core\Http\ResponseInfo;
+use Cashbox\Core\Http\ResponseInfo;
 
 class Init extends ResponseInfo
 {

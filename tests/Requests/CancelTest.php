@@ -15,8 +15,8 @@
 
 namespace Tests\Requests;
 
-use CashierProvider\Core\Http\Request;
-use CashierProvider\Tinkoff\Online\Requests\Cancel;
+use Cashbox\Core\Http\Request;
+use Cashbox\Tinkoff\Online\Requests\Cancel;
 use DragonCode\Contracts\Cashier\Http\Request as RequestContract;
 use DragonCode\Contracts\Http\Builder;
 use Tests\TestCase;

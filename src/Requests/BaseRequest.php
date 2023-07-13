@@ -15,11 +15,11 @@
 
 declare(strict_types=1);
 
-namespace CashierProvider\Tinkoff\Online\Requests;
+namespace Cashbox\Tinkoff\Online\Requests;
 
-use CashierProvider\Core\Http\Request;
-use CashierProvider\Core\Support\URI;
-use CashierProvider\Tinkoff\Auth\Auth;
+use Cashbox\Core\Http\Request;
+use Cashbox\Core\Support\URI;
+use Cashbox\Tinkoff\Auth\Auth;
 
 abstract class BaseRequest extends Request
 {

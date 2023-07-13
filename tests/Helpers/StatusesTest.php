@@ -15,8 +15,8 @@
 
 namespace Tests\Helpers;
 
-use CashierProvider\Tinkoff\Online\Helpers\Statuses;
-use CashierProvider\Tinkoff\Online\Resources\Details;
+use Cashbox\Tinkoff\Online\Helpers\Statuses;
+use Cashbox\Tinkoff\Online\Resources\Details;
 use Tests\TestCase;
 
 class StatusesTest extends TestCase

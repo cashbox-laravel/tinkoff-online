@@ -15,7 +15,7 @@
 
 declare(strict_types=1);
 
-namespace CashierProvider\Tinkoff\Online\Requests;
+namespace Cashbox\Tinkoff\Online\Requests;
 
 class Init extends BaseRequest
 {

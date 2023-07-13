@@ -13,9 +13,9 @@
  * @see https://github.com/cashbox-laravel/foundation
  */
 
-namespace CashierProvider\Tinkoff\Online\Helpers;
+namespace Cashbox\Tinkoff\Online\Helpers;
 
-use CashierProvider\Core\Services\Statuses as BaseStatus;
+use Cashbox\Core\Services\Statuses as BaseStatus;
 
 class Statuses extends BaseStatus
 {
