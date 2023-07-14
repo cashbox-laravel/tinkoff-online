@@ -23,7 +23,7 @@ class Model extends BaseModel
 {
     public function getExternalId(): ?string
     {
-        return $this->model->cashier->external_id ?? null;
+        return $this->model->cashbox->external_id ?? null;
     }
 
     protected function paymentId(): string
