@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 namespace Cashbox\Tinkoff\Online\Responses;
 
-use Cashbox\Core\Http\ResponseInfo;
+use Cashbox\Core\Http\Response;
 
-class State extends ResponseInfo
+class State extends Response
 {
     protected $map = [
         self::KEY_EXTERNAL_ID => 'PaymentId',
