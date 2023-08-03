@@ -1,37 +1,27 @@
 <?php
 
-/**
- * This file is part of the "cashbox/foundation" project.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @author Andrey Helldar <helldar@dragon-code.pro>
- * @copyright 2023 Andrey Helldar
- * @license MIT
- *
- * @see https://github.com/cashbox-laravel/foundation
- */
+declare(strict_types=1);
 
-namespace Cashbox\Tinkoff\Online\Exceptions;
+namespace Cashbox\Tinkoff\Online\Services;
 
-use Cashbox\Core\Exceptions\Http\BankInternalErrorException;
-use Cashbox\Core\Exceptions\Http\BuyerNotFoundClientException;
-use Cashbox\Core\Exceptions\Http\CardHasStolenException;
-use Cashbox\Core\Exceptions\Http\ContactTheSellerClientException;
-use Cashbox\Core\Exceptions\Http\InsufficientFundsCardException;
-use Cashbox\Core\Exceptions\Http\InvalidCardException;
-use Cashbox\Core\Exceptions\Http\PaymentCompletedException;
-use Cashbox\Core\Exceptions\Http\PaymentDeclinedException;
-use Cashbox\Core\Exceptions\Http\PaymentTypeNotAvailableException;
-use Cashbox\Core\Exceptions\Http\SumException;
-use Cashbox\Core\Exceptions\Http\TooManyRequestsException;
-use Cashbox\Core\Exceptions\Http\TryAgainLaterClientException;
-use Cashbox\Core\Exceptions\Manager as ExceptionManager;
+use Cashbox\Core\Exceptions\External\BankInternalErrorException;
+use Cashbox\Core\Exceptions\External\BuyerNotFoundClientException;
+use Cashbox\Core\Exceptions\External\CardHasStolenException;
+use Cashbox\Core\Exceptions\External\ContactTheSellerClientException;
+use Cashbox\Core\Exceptions\External\IncorrectSumException;
+use Cashbox\Core\Exceptions\External\InsufficientFundsCardException;
+use Cashbox\Core\Exceptions\External\InvalidCardException;
+use Cashbox\Core\Exceptions\External\PaymentCompletedException;
+use Cashbox\Core\Exceptions\External\PaymentDeclinedException;
+use Cashbox\Core\Exceptions\External\PaymentTypeNotAvailableException;
+use Cashbox\Core\Exceptions\External\TooManyRequestsException;
+use Cashbox\Core\Exceptions\External\TransactionNotFoundException;
+use Cashbox\Core\Exceptions\External\TryAgainLaterClientException;
+use Cashbox\Core\Services\Exception as BaseException;
 
-class Manager extends ExceptionManager
+class Exception extends BaseException
 {
-    protected $codes = [
+    protected array $codes = [
         7    => BuyerNotFoundClientException::class,
         53   => ContactTheSellerClientException::class,
         99   => PaymentDeclinedException::class,
@@ -39,8 +29,10 @@ class Manager extends ExceptionManager
         102  => PaymentDeclinedException::class,
         103  => TryAgainLaterClientException::class,
         119  => TooManyRequestsException::class,
+        403  => PaymentDeclinedException::class,
+        404  => TransactionNotFoundException::class,
         604  => PaymentDeclinedException::class,
-        620  => SumException::class,
+        620  => IncorrectSumException::class,
         623  => PaymentCompletedException::class,
         642  => InvalidCardException::class,
         1004 => CardHasStolenException::class,
@@ -67,7 +59,7 @@ class Manager extends ExceptionManager
         1061 => InvalidCardException::class,
         1062 => InvalidCardException::class,
         1063 => InvalidCardException::class,
-        1064 => SumException::class,
+        1064 => IncorrectSumException::class,
         1065 => PaymentDeclinedException::class,
         1076 => PaymentDeclinedException::class,
         1089 => TryAgainLaterClientException::class,
@@ -80,7 +72,7 @@ class Manager extends ExceptionManager
         9999 => BankInternalErrorException::class,
     ];
 
-    protected $code_keys = ['ErrorCode'];
+    protected array $codeKeys = ['ErrorCode'];
 
-    protected $reason_keys = ['Details', 'Message'];
+    protected array $reasonKeys = ['Details', 'Message'];
 }

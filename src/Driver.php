@@ -15,54 +15,35 @@
 
 namespace Cashbox\Tinkoff\Online;
 
-use Cashbox\Core\Facades\Helpers\Model;
+use Cashbox\Core\Http\Response as BaseResponse;
 use Cashbox\Core\Services\Driver as BaseDriver;
-use Cashbox\Tinkoff\Online\Exceptions\Manager;
-use Cashbox\Tinkoff\Online\Helpers\Statuses;
-use Cashbox\Tinkoff\Online\Requests\Cancel;
-use Cashbox\Tinkoff\Online\Requests\GetState;
-use Cashbox\Tinkoff\Online\Requests\Init;
-use Cashbox\Tinkoff\Online\Resources\Details;
-use Cashbox\Tinkoff\Online\Responses\Refund;
-use Cashbox\Tinkoff\Online\Responses\State;
-use DragonCode\Contracts\Cashier\Http\Response;
+use Cashbox\Tinkoff\Online\Http\Requests\CancelRequest;
+use Cashbox\Tinkoff\Online\Http\Requests\CreateRequest;
+use Cashbox\Tinkoff\Online\Http\Requests\GetStateRequest;
+use Cashbox\Tinkoff\Online\Http\Responses\Response;
+use Cashbox\Tinkoff\Online\Services\Exception;
+use Cashbox\Tinkoff\Online\Services\Statuses;
 
 class Driver extends BaseDriver
 {
-    protected $exception = Manager::class;
+    protected string $statuses = Statuses::class;
 
-    protected $statuses = Statuses::class;
+    protected string $exception = Exception::class;
 
-    protected $details = Details::class;
+    protected string $response = Response::class;
 
-    public function start(): Response
+    public function start(): BaseResponse
     {
-        $request = Init::make($this->model);
-
-        $response = $this->request($request, Responses\Init::class);
-
-        $external_id = $response->getExternalId();
-
-        $details = $this->details($response->toArray());
-
-        Model::updateOrCreate($this->payment, compact('external_id', 'details'));
-
-        $this->payment->refresh();
-
-        return $response;
+        return $this->request(CreateRequest::class);
     }
 
-    public function check(): Response
+    public function verify(): BaseResponse
     {
-        $request = GetState::make($this->model);
-
-        return $this->request($request, State::class);
+        return $this->request(GetStateRequest::class);
     }
 
-    public function refund(): Response
+    public function refund(): BaseResponse
     {
-        $request = Cancel::make($this->model);
-
-        return $this->request($request, Refund::class);
+        return $this->request(CancelRequest::class);
     }
 }
