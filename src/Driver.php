@@ -24,6 +24,9 @@ use Cashbox\Tinkoff\Online\Http\Responses\Response;
 use Cashbox\Tinkoff\Online\Services\Exception;
 use Cashbox\Tinkoff\Online\Services\Statuses;
 
+/**
+ * @see https://www.tinkoff.ru/kassa/develop/api/payments/
+ */
 class Driver extends BaseDriver
 {
     protected string $statuses = Statuses::class;

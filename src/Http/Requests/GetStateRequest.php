@@ -24,7 +24,7 @@ class GetStateRequest extends BaseRequest
     public function body(): array
     {
         return [
-            'PaymentId' => $this->resource->externalId(),
+            'PaymentId' => $this->resource->payment->cashbox->external_id,
         ];
     }
 }

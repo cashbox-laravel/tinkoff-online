@@ -27,20 +27,6 @@ abstract class BaseRequest extends Request
 
     protected BaseSign|string|null $auth = Sign::class;
 
-    public function options(): array
-    {
-        //if ($this->hash) {
-        //    return [
-        //        'auth' => [
-        //            $this->clientId(),
-        //            $this->clientSecret(),
-        //        ],
-        //    ];
-        //}
-
-        return [];
-    }
-
     protected function clientId(): string
     {
         return $this->resource->config->credentials->clientId;
