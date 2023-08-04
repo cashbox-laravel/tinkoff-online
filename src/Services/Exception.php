@@ -85,6 +85,8 @@ class Exception extends BaseException
         9999 => BankInternalErrorException::class,
     ];
 
+    protected array $failedKey = ['Success'];
+
     protected array $codeKeys = ['ErrorCode'];
 
     protected array $reasonKeys = ['Details', 'Message'];
