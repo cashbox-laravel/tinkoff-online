@@ -17,72 +17,72 @@ declare(strict_types=1);
 
 namespace Cashbox\Tinkoff\Online\Services;
 
-use Cashbox\Core\Exceptions\External\BankInternalErrorException;
-use Cashbox\Core\Exceptions\External\BuyerNotFoundClientException;
-use Cashbox\Core\Exceptions\External\CardHasStolenException;
-use Cashbox\Core\Exceptions\External\ContactTheSellerClientException;
-use Cashbox\Core\Exceptions\External\IncorrectSumException;
-use Cashbox\Core\Exceptions\External\InsufficientFundsCardException;
-use Cashbox\Core\Exceptions\External\InvalidCardException;
-use Cashbox\Core\Exceptions\External\PaymentCompletedException;
-use Cashbox\Core\Exceptions\External\PaymentDeclinedException;
-use Cashbox\Core\Exceptions\External\PaymentTypeNotAvailableException;
-use Cashbox\Core\Exceptions\External\TooManyRequestsException;
-use Cashbox\Core\Exceptions\External\TransactionNotFoundException;
-use Cashbox\Core\Exceptions\External\TryAgainLaterClientException;
+use Cashbox\Core\Exceptions\External\BankInternalErrorHttpException;
+use Cashbox\Core\Exceptions\External\BuyerNotFoundHttpException;
+use Cashbox\Core\Exceptions\External\CardHasStolenHttpException;
+use Cashbox\Core\Exceptions\External\ContactTheSellerHttpException;
+use Cashbox\Core\Exceptions\External\IncorrectSumHttpException;
+use Cashbox\Core\Exceptions\External\InsufficientFundsCardHttpException;
+use Cashbox\Core\Exceptions\External\InvalidCardHttpException;
+use Cashbox\Core\Exceptions\External\PaymentCompletedHttpException;
+use Cashbox\Core\Exceptions\External\PaymentDeclinedHttpException;
+use Cashbox\Core\Exceptions\External\PaymentTypeNotAvailableHttpException;
+use Cashbox\Core\Exceptions\External\TooManyRequestsHttpException;
+use Cashbox\Core\Exceptions\External\TransactionNotFoundHttpException;
+use Cashbox\Core\Exceptions\External\TryAgainLaterClientHttpException;
 use Cashbox\Core\Services\Exception as BaseException;
 
 class Exception extends BaseException
 {
     protected array $codes = [
-        7    => BuyerNotFoundClientException::class,
-        53   => ContactTheSellerClientException::class,
-        99   => PaymentDeclinedException::class,
-        100  => TryAgainLaterClientException::class,
-        102  => PaymentDeclinedException::class,
-        103  => TryAgainLaterClientException::class,
-        119  => TooManyRequestsException::class,
-        403  => PaymentDeclinedException::class,
-        404  => TransactionNotFoundException::class,
-        604  => PaymentDeclinedException::class,
-        620  => IncorrectSumException::class,
-        623  => PaymentCompletedException::class,
-        642  => InvalidCardException::class,
-        1004 => CardHasStolenException::class,
-        1005 => PaymentDeclinedException::class,
-        1007 => CardHasStolenException::class,
-        1008 => PaymentDeclinedException::class,
-        1012 => PaymentDeclinedException::class,
-        1013 => TryAgainLaterClientException::class,
-        1014 => InvalidCardException::class,
-        1015 => TryAgainLaterClientException::class,
-        1019 => PaymentDeclinedException::class,
-        1030 => TryAgainLaterClientException::class,
-        1033 => InvalidCardException::class,
-        1034 => TryAgainLaterClientException::class,
-        1039 => PaymentDeclinedException::class,
-        1041 => CardHasStolenException::class,
-        1043 => CardHasStolenException::class,
-        1051 => InsufficientFundsCardException::class,
-        1053 => PaymentDeclinedException::class,
-        1054 => InvalidCardException::class,
-        1057 => InvalidCardException::class,
-        1058 => InvalidCardException::class,
-        1059 => CardHasStolenException::class,
-        1061 => InvalidCardException::class,
-        1062 => InvalidCardException::class,
-        1063 => InvalidCardException::class,
-        1064 => IncorrectSumException::class,
-        1065 => PaymentDeclinedException::class,
-        1076 => PaymentDeclinedException::class,
-        1089 => TryAgainLaterClientException::class,
-        1091 => TryAgainLaterClientException::class,
-        1092 => PaymentDeclinedException::class,
-        1093 => CardHasStolenException::class,
-        1094 => BankInternalErrorException::class,
-        1096 => TryAgainLaterClientException::class,
-        3001 => PaymentTypeNotAvailableException::class,
-        9999 => BankInternalErrorException::class,
+        7    => BuyerNotFoundHttpException::class,
+        53   => ContactTheSellerHttpException::class,
+        99   => PaymentDeclinedHttpException::class,
+        100  => TryAgainLaterClientHttpException::class,
+        102  => PaymentDeclinedHttpException::class,
+        103  => TryAgainLaterClientHttpException::class,
+        119  => TooManyRequestsHttpException::class,
+        403  => PaymentDeclinedHttpException::class,
+        404  => TransactionNotFoundHttpException::class,
+        604  => PaymentDeclinedHttpException::class,
+        620  => IncorrectSumHttpException::class,
+        623  => PaymentCompletedHttpException::class,
+        642  => InvalidCardHttpException::class,
+        1004 => CardHasStolenHttpException::class,
+        1005 => PaymentDeclinedHttpException::class,
+        1007 => CardHasStolenHttpException::class,
+        1008 => PaymentDeclinedHttpException::class,
+        1012 => PaymentDeclinedHttpException::class,
+        1013 => TryAgainLaterClientHttpException::class,
+        1014 => InvalidCardHttpException::class,
+        1015 => TryAgainLaterClientHttpException::class,
+        1019 => PaymentDeclinedHttpException::class,
+        1030 => TryAgainLaterClientHttpException::class,
+        1033 => InvalidCardHttpException::class,
+        1034 => TryAgainLaterClientHttpException::class,
+        1039 => PaymentDeclinedHttpException::class,
+        1041 => CardHasStolenHttpException::class,
+        1043 => CardHasStolenHttpException::class,
+        1051 => InsufficientFundsCardHttpException::class,
+        1053 => PaymentDeclinedHttpException::class,
+        1054 => InvalidCardHttpException::class,
+        1057 => InvalidCardHttpException::class,
+        1058 => InvalidCardHttpException::class,
+        1059 => CardHasStolenHttpException::class,
+        1061 => InvalidCardHttpException::class,
+        1062 => InvalidCardHttpException::class,
+        1063 => InvalidCardHttpException::class,
+        1064 => IncorrectSumHttpException::class,
+        1065 => PaymentDeclinedHttpException::class,
+        1076 => PaymentDeclinedHttpException::class,
+        1089 => TryAgainLaterClientHttpException::class,
+        1091 => TryAgainLaterClientHttpException::class,
+        1092 => PaymentDeclinedHttpException::class,
+        1093 => CardHasStolenHttpException::class,
+        1094 => BankInternalErrorHttpException::class,
+        1096 => TryAgainLaterClientHttpException::class,
+        3001 => PaymentTypeNotAvailableHttpException::class,
+        9999 => BankInternalErrorHttpException::class,
     ];
 
     protected array $failedKey = ['Success'];
