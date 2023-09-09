@@ -18,14 +18,10 @@ declare(strict_types=1);
 namespace Cashbox\Tinkoff\Online\Http\Requests;
 
 use Cashbox\Core\Http\Request;
-use Cashbox\Core\Services\Auth as BaseSign;
-use Cashbox\Tinkoff\Auth\Auth;
 
 abstract class BaseRequest extends Request
 {
     protected string $productionHost = 'https://securepay.tinkoff.ru';
-
-    protected BaseSign|string|null $auth = Auth::class;
 
     protected function clientId(): string
     {
