@@ -18,13 +18,13 @@ declare(strict_types=1);
 namespace Cashbox\Tinkoff\Online\Http\Requests;
 
 use Cashbox\Core\Services\Auth;
-use Cashbox\Tinkoff\Auth\HashAuth;
+use Cashbox\Tinkoff\Auth\Hash;
 
 class GetStateRequest extends BaseRequest
 {
     protected string $productionUri = '/v2/GetState';
 
-    protected Auth|string|null $auth = HashAuth::class;
+    protected Auth|string|null $auth = Hash::class;
 
     public function body(): array
     {

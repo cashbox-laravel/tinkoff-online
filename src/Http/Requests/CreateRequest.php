@@ -18,13 +18,13 @@ declare(strict_types=1);
 namespace Cashbox\Tinkoff\Online\Http\Requests;
 
 use Cashbox\Core\Services\Auth;
-use Cashbox\Tinkoff\Auth\BasicAuth;
+use Cashbox\Tinkoff\Auth\Basic;
 
 class CreateRequest extends BaseRequest
 {
     protected string $productionUri = '/v2/Init';
 
-    protected Auth|string|null $auth = BasicAuth::class;
+    protected Auth|string|null $auth = Basic::class;
 
     public function body(): array
     {
